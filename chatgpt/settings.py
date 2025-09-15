@@ -32,7 +32,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://chatbot.onrender.com",
+    "https://chatbot-75df.onrender.com",
 ]
 # Application definition
 
@@ -132,4 +132,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = "login"
 
 LOGIN_REDIRECT_URL = "home"
+
 
