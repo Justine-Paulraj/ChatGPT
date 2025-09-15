@@ -1,0 +1,19 @@
+{% for convo in conversations %}
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="{% url 'conversation_detail' convo.id %}">{{ convo.title }}</a>
+        <form 
+            hx-post="{% url 'delete_conversation' convo.id %}" 
+            hx-target="#sidebar" 
+            hx-swap="innerHTML"
+            style="margin:0;"
+        >
+            {% csrf_token %}
+            <button type="submit" style="background:none; border:none; color:red; cursor:pointer;">✖</button>
+        </form>
+    </div>
+{% empty %}
+    <p>No conversations yet.</p>
+{% endfor %}
+<hr>
+<a href="{% url 'new_conversation' %}">+ New Conversation</a>
+<a href="{% url 'logout' %}">Logout</a>

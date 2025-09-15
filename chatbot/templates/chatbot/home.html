@@ -1,0 +1,14 @@
+{% extends "base_auth.html" %}
+
+{% block content %}
+  <h1>Welcome to ChatBot</h1>
+
+  {% if user.is_authenticated %}
+    <p>Hello, {{ user.username }}!</p>
+    <p><a href="{% url 'conversation_list' %}">Go to your conversations</a></p>
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+  {% else %}
+    <p><a href="{% url 'login' %}">Login</a> or 
+       <a href="{% url 'signup' %}">Sign up</a> to start chatting.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'chatbot/styles.css' %}">
+
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <meta charset="UTF-8">
+    <title>ChatGPT Clone</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #202123;
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            display: block;
+            color: #e0e0e0;
+            text-decoration: none;
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #343541;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            background: #f5f5f5;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+    <h2>Your Conversations</h2>
+    <div 
+        hx-get="{% url 'conversation_list' %}" 
+        hx-trigger="load, every 5s" 
+        hx-target="#sidebar"
+        hx-swap="innerHTML"
+    >
+        {% include "chatbot/conversation_list_partial.html" %}
+    </div>
+</div>
+
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

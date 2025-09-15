@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Your Conversations</h2>
+
+<a href="{% url 'new_conversation' %}">+ New Conversation</a>
+
+<ul>
+    {% for c in conversations %}
+        <li><a href="{% url 'conversation_detail' c.id %}">{{ c.title|default:"Untitled" }}</a></li>
+    {% empty %}
+        <li>No conversations yet.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'home' %}">Back to Home</a>
+{% endblock %}
